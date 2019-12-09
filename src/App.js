@@ -18,13 +18,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todo: todo
+      todo: []
     };
   }
 
-  addTodo = event => {
+  addTodo = name => {
     const newTodo = {
-      task: event,
+      name: name,
       id: Date.now(),
       completed: false
     };
@@ -33,23 +33,14 @@ class App extends React.Component {
     });
   };
 
-  handleChanges = e => {
-    this.setState({ newTodo: e.target.value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.addTodo(this.state.newTodo);
-    this.setState({
-      newTodo: ''
-    });
-  };
-
-  render() {
+ 
+ render() {
+    console.log('rendering...');
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList todo={this.state.todo} />
+        <TodoForm addTodo={this.addTodo} />
       </div>
     );
   }
